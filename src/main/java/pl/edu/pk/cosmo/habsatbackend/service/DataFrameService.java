@@ -20,8 +20,7 @@ public class DataFrameService {
                 50);
     }
 
-    @Scheduled(fixedDelay = 1000 * DELAY_IN_SEC)
-    public void sendTestFrame() {
+    public DataFrame getDummyDataFrame() {
         Random random = new Random();
 
         currentDataFrame = new DataFrame(
@@ -44,6 +43,12 @@ public class DataFrameService {
             currentDataFrame.setHeightInMeters(1000);
         }
 
-        simpMessagingTemplate.convertAndSend("/data/ws",currentDataFrame);
+        return currentDataFrame;
+    }
+
+    @Scheduled(fixedDelay = 1000 * DELAY_IN_SEC)
+    public void sendTestFrame() {
+        DataFrame dummyDataFrame = getDummyDataFrame();
+        simpMessagingTemplate.convertAndSend("/data/ws", dummyDataFrame);
     }
 }

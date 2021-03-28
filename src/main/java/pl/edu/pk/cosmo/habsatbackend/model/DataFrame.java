@@ -5,8 +5,12 @@ import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+/**
+ * @author Patryk Borchowiec
+ * @since 0.0.0
+ */
 @Data
-public class DataFrame {
+public class DataFrame implements Cloneable {
     private String id;
     private LocalDateTime dateTime;
     private double heightInMeters;
@@ -22,5 +26,10 @@ public class DataFrame {
         this.temperatureInCelsius = temperatureInCelsius;
         this.longitude = longitude;
         this.latitude = latitude;
+    }
+
+    @Override
+    public DataFrame clone() throws CloneNotSupportedException {
+        return new DataFrame(dateTime, heightInMeters, temperatureInCelsius, longitude, latitude);
     }
 }

@@ -5,6 +5,10 @@ import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+/**
+ * @author Patryk Borchowiec
+ * @since 0.0.0
+ */
 @Data
 public class DataFrame {
     private String id;

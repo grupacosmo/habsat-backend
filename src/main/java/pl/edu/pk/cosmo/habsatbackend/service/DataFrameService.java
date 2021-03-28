@@ -8,6 +8,10 @@ import pl.edu.pk.cosmo.habsatbackend.model.DataFrame;
 import java.time.LocalDateTime;
 import java.util.Random;
 
+/**
+ * @author Patryk Borchowiec
+ * @since 0.0.0
+ */
 @Service
 public class DataFrameService {
     private final SimpMessagingTemplate simpMessagingTemplate;

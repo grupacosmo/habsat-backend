@@ -6,7 +6,7 @@ SERVERS:
     waitForFinishExecuteAllRequests: true
     waitToShutdownThreadsOnStop: 5000
     springBootLoaderClassName: org.springframework.boot.loader.JarLauncher
-    contextName: /habsat-backend
+    contextName: /habsat
     isStartOnMainServerInitialize: true
     httpStickySession: false
     isLoadSimpleApplicationPropertiesBeforeStartup: true

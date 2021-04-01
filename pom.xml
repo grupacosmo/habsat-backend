@@ -13,10 +13,21 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>habsat-backend</name>
     <description>Backend for HabSat website</description>
+    <packaging>war</packaging>
 
     <properties>
         <java.version>15</java.version>
     </properties>
+
+    <pluginRepositories>
+        <!-- Repository is also accessible using https connection: -->
+        <!-- https://support.jlupin.com/maven2/ -->
+        <pluginRepository>
+            <id>jlupin-central</id>
+            <name>jlupin</name>
+            <url>http://support.jlupin.com/maven2/</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <dependencies>
         <dependency>
@@ -43,6 +54,54 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.4</version>
+                <configuration>
+                    <workingDirectory>habsat-frontend</workingDirectory>
+                    <installDirectory>target</installDirectory>
+                    <nodeVersion>v12.8.1</nodeVersion>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>npm build</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run build</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webResources>
+                        <resource>
+                            <directory>habsat-frontend/build</directory>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
@@ -53,6 +112,38 @@
                         </exclude>
                     </excludes>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.jlupin</groupId>
+                <artifactId>jlupin-platform-maven-plugin</artifactId>
+                <version>1.6.1.0</version>
+                <executions>
+                    <execution>
+                        <id>jlupin-zip</id>
+                        <goals>
+                            <goal>zip</goal>
+                        </goals>
+                        <configuration>
+                            <additionalFilesDirectories>
+                                <param>additional-files</param>
+                            </additionalFilesDirectories>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>jlupin-deploy</id>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

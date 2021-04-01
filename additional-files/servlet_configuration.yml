@@ -5,7 +5,7 @@ SERVERS:
     httpSecondaryPort: -1
     waitForFinishExecuteAllRequests: true
     waitToShutdownThreadsOnStop: 5000
-    springBootLoaderClassName: org.springframework.boot.loader.JarLauncher
+    springBootLoaderClassName: org.springframework.boot.loader.WarLauncher
     contextName: /habsat
     isStartOnMainServerInitialize: true
     httpStickySession: false

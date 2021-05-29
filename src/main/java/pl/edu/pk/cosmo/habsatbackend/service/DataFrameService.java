@@ -54,8 +54,8 @@ public class DataFrameService {
                 LocalDateTime.now(),
                 currentDataFrame.getHeightInMeters() + random.nextDouble() * 2 * DELAY_IN_SEC,
                 20 + random.nextDouble(),
-                currentDataFrame.getLongitude() + random.nextDouble() * DELAY_IN_SEC,
-                currentDataFrame.getLatitude() + random.nextDouble() * DELAY_IN_SEC
+                currentDataFrame.getLongitude() + (random.nextDouble() * DELAY_IN_SEC) / 4000.0,
+                currentDataFrame.getLatitude() + (random.nextDouble() * DELAY_IN_SEC) / 4000.0
         );
 
         if (dataFrame.getLatitude() > 90) {

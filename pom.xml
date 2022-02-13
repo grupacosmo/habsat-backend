@@ -19,16 +19,6 @@
         <java.version>15</java.version>
     </properties>
 
-    <pluginRepositories>
-        <!-- Repository is also accessible using https connection: -->
-        <!-- https://support.jlupin.com/maven2/ -->
-        <pluginRepository>
-            <id>jlupin-central</id>
-            <name>jlupin</name>
-            <url>http://support.jlupin.com/maven2/</url>
-        </pluginRepository>
-    </pluginRepositories>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -65,7 +55,7 @@
                 <configuration>
                     <workingDirectory>habsat-frontend</workingDirectory>
                     <installDirectory>target</installDirectory>
-                    <nodeVersion>v12.8.1</nodeVersion>
+                    <nodeVersion>v16.14.0</nodeVersion>
                 </configuration>
                 <executions>
                     <execution>
@@ -121,31 +111,6 @@
                     <execution>
                         <goals>
                             <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>com.jlupin</groupId>
-                <artifactId>jlupin-platform-maven-plugin</artifactId>
-                <version>1.6.1.0</version>
-                <executions>
-                    <execution>
-                        <id>jlupin-zip</id>
-                        <goals>
-                            <goal>zip</goal>
-                        </goals>
-                        <configuration>
-                            <additionalFilesDirectories>
-                                <param>additional-files</param>
-                            </additionalFilesDirectories>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>jlupin-deploy</id>
-                        <goals>
-                            <goal>deploy</goal>
                         </goals>
                     </execution>
                 </executions>
